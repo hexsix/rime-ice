@@ -11,6 +11,7 @@ schema_list:
   # 可以直接删除或注释不需要的方案，对应的 *.schema.yaml 方案文件也可以直接删除
   # 除了 t9，它依赖于 rime_ice，用九宫格别删 rime_ice.schema.yaml
   - schema: rime_ice               # 雾凇拼音（全拼）
+  - schema: japanese               # 日语
   - schema: t9                     # 九宫格（仓输入法）
   - schema: double_pinyin          # 自然码双拼
   - schema: double_pinyin_abc      # 智能 ABC 双拼
@@ -22,7 +23,7 @@ schema_list:
 
 # 菜单
 menu:
-  page_size: 5  # 候选词个数
+  page_size: 6  # 候选词个数
   # alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⑩ ]  # 修改候选项标签
   # alternative_select_keys: ASDFGHJKL  # 如编码字符占用数字键，则需另设选字键
 
@@ -32,8 +33,8 @@ switcher:
   caption: 「方案选单」
   hotkeys:
     - F4
-    - Control+grave
-    - Control+Shift+grave
+    # - Control+grave
+    # - Control+Shift+grave
     # - Alt+grave
   save_options:  # 开关记忆（方案中的 switches），从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
     - ascii_punct
