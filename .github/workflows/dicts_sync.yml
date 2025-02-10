@@ -1,0 +1,47 @@
+# 自动更新词典
+# https://github.com/felixonmars/fcitx5-pinyin-zhwiki # 肥猫百万大词库
+# https://github.com/outloudvi/mw2fcitx # 萌娘百科词库
+# 放在 cn_dicts\zhwiki.dict.yaml 和 cn_dicts\moegirl.dict.yaml
+# zhwiki.dict.yaml 总是在 0.2.5 tag 的 assets 下，命名规则类似 zhwiki-20241218.dict.yaml 日期部分需要变动
+# moegirl.dict.yml 则总是在最新的 tag 下（如 20250209），命名则总是 moegirl.dict.yml
+
+name: 同步词典文件
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'  # 每周日运行一次
+
+jobs:
+  sync-dicts:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        
+      - name: 创建词典目录
+        run: mkdir -p cn_dicts
+
+      - name: 获取最新的萌娘百科词典
+        run: |
+          LATEST_TAG=$(curl -s https://api.github.com/repos/outloudvi/mw2fcitx/releases/latest | jq -r .tag_name)
+          curl -L -o cn_dicts/moegirl.dict.yaml "https://github.com/outloudvi/mw2fcitx/releases/download/${LATEST_TAG}/moegirl.dict.yml"
+
+      - name: 获取最新的维基词典
+        run: |
+          # 获取所有资产列表
+          ASSETS=$(curl -s https://api.github.com/repos/felixonmars/fcitx5-pinyin-zhwiki/releases/tags/0.2.5 | jq -r '.assets[].name')
+          # 找到最新的 dict.yaml 文件
+          LATEST_DICT=$(echo "$ASSETS" | grep -E "zhwiki-[0-9]{8}\.dict\.yaml$" | sort -r | head -n 1)
+          # 下载文件
+          curl -L -o cn_dicts/zhwiki.dict.yaml "https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/0.2.5/${LATEST_DICT}"
+
+      - name: 提交更改
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add cn_dicts/
+          git commit -m "chore: 更新词典文件" || echo "没有需要更新的文件"
+          git push
+
