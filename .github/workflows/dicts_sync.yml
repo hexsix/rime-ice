@@ -26,7 +26,7 @@ jobs:
       - name: 获取最新的萌娘百科词典
         run: |
           LATEST_TAG=$(curl -s https://api.github.com/repos/outloudvi/mw2fcitx/releases/latest | jq -r .tag_name)
-          curl -L -o cn_dicts/moegirl.dict.yaml "https://github.com/outloudvi/mw2fcitx/releases/download/${LATEST_TAG}/moegirl.dict.yml"
+          curl -L -o cn_dicts/moegirl.dict.yaml "https://github.com/outloudvi/mw2fcitx/releases/download/${LATEST_TAG}/moegirl.dict.yaml"
 
       - name: 获取最新的维基词典
         run: |
