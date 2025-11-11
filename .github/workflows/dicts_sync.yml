@@ -2,7 +2,7 @@
 # https://github.com/felixonmars/fcitx5-pinyin-zhwiki # 肥猫百万大词库
 # https://github.com/outloudvi/mw2fcitx # 萌娘百科词库
 # 放在 cn_dicts\zhwiki.dict.yaml 和 cn_dicts\moegirl.dict.yaml
-# zhwiki.dict.yaml 总是在 0.2.5 tag 的 assets 下，命名规则类似 zhwiki-20241218.dict.yaml 日期部分需要变动
+# zhwiki.dict.yaml 总是在 0.3.0 tag 的 assets 下，命名规则类似 zhwiki-20241218.dict.yaml 日期部分需要变动
 # moegirl.dict.yml 则总是在最新的 tag 下（如 20250209），命名则总是 moegirl.dict.yml
 
 name: 同步词典文件
@@ -81,7 +81,7 @@ jobs:
       - name: 获取最新的维基词典
         run: |
           # 使用适当的标头请求 API
-          RELEASE_INFO=$(curl -s -H "Accept: application/vnd.github+json" -H "User-Agent: GithubActions-DictSync" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/felixonmars/fcitx5-pinyin-zhwiki/releases/tags/0.2.5")
+          RELEASE_INFO=$(curl -s -H "Accept: application/vnd.github+json" -H "User-Agent: GithubActions-DictSync" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/felixonmars/fcitx5-pinyin-zhwiki/releases/tags/0.3.0")
           
           # 检查 API 响应
           if echo "$RELEASE_INFO" | jq -e 'has("assets")' > /dev/null 2>&1; then
@@ -94,7 +94,7 @@ jobs:
             if [ -n "$LATEST_DICT" ]; then
               echo "找到词典文件: $LATEST_DICT"
               # 下载文件
-              curl -L --fail -o cn_dicts/zhwiki.dict.yaml "https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/0.2.5/${LATEST_DICT}"
+              curl -L --fail -o cn_dicts/zhwiki.dict.yaml "https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/0.3.0/${LATEST_DICT}"
             else
               echo "未找到词典文件，检查是否使用不同的命名模式"
               # 直接列出所有资产查看实际命名
@@ -108,7 +108,7 @@ jobs:
             # 尝试备选方案 - 使用带有 API 令牌的请求
             if [ -n "$GITHUB_TOKEN" ]; then
               echo "尝试使用 GitHub 令牌重新请求..."
-              RELEASE_INFO=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" -H "User-Agent: GithubActions-DictSync" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/felixonmars/fcitx5-pinyin-zhwiki/releases/tags/0.2.5")
+              RELEASE_INFO=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" -H "User-Agent: GithubActions-DictSync" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/felixonmars/fcitx5-pinyin-zhwiki/releases/tags/0.3.0")
               
               if echo "$RELEASE_INFO" | jq -e 'has("assets")' > /dev/null 2>&1; then
                 ASSETS=$(echo "$RELEASE_INFO" | jq -r '.assets[].name')
@@ -116,7 +116,7 @@ jobs:
                 
                 if [ -n "$LATEST_DICT" ]; then
                   echo "使用令牌找到词典文件: $LATEST_DICT"
-                  curl -L --fail -o cn_dicts/zhwiki.dict.yaml "https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/0.2.5/${LATEST_DICT}"
+                  curl -L --fail -o cn_dicts/zhwiki.dict.yaml "https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/0.3.0/${LATEST_DICT}"
                 else
                   echo "使用令牌仍未找到词典文件"
                   exit 1
