@@ -22,7 +22,7 @@
 # 需要注音的字词设定在 others/script/rime/需要注音.txt
 ---
 name: tencent
-version: "2026-05-20"
+version: "2026-05-30"
 sort: by_weight
 columns:
   - text
@@ -276484,6 +276484,8 @@ columns:
 咪咕善跑	100
 咪咕圈圈	100
 咪咕快游	100
+咪咕文学	100
+咪咕新空	100
 咪咕游戏	100
 咪咕直播	100
 咪咕视讯	100

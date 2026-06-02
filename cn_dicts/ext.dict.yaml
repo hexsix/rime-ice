@@ -16,7 +16,7 @@
 # - 简化字八股文 https://github.com/rime/rime-essay-simp
 ---
 name: ext
-version: "2026-05-20"
+version: "2026-05-30"
 sort: by_weight
 ...
 # +_+
@@ -25767,7 +25767,6 @@ sort: by_weight
 藏宝海湾	cang bao hai wan	100
 藏宝库	cang bao ku	100
 藏宝室	cang bao shi	100
-藏宝箱	cang bao xiang	100
 藏宝玄机	cang bao xuan ji	100
 藏宝之地	cang bao zhi di	100
 仓本裕基	cang ben yu ji	100
@@ -47018,7 +47017,6 @@ sort: by_weight
 大脚长传	da jiao chang chuan	100
 打搅到	da jiao dao	100
 大角度俯冲轰炸	da jiao du fu chong hong zha	100
-大脚怪	da jiao guai	100
 大脚姆趾	da jiao mu zhi	100
 大脚婆娘	da jiao po niang	100
 大郊亭	da jiao ting	100

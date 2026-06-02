@@ -3235,7 +3235,7 @@
 #///
 ---
 name: base
-version: "2026-05-20"
+version: "2026-06-01"
 sort: by_weight
 ...
 # +_+
@@ -43650,6 +43650,7 @@ sort: by_weight
 藏宝岛	cang bao dao	103
 藏宝地	cang bao di	167
 藏宝图	cang bao tu	5700
+藏宝箱	cang bao xiang	100
 仓本堇	cang ben jin	6666
 舱壁	cang bi	1795
 仓边路	cang bian lu	201
@@ -71774,6 +71775,7 @@ sort: by_weight
 大角度	da jiao du	2365
 搭脚儿	da jiao er	9999
 大脚给油	da jiao gei you	2
+大脚怪	da jiao guai	100
 打搅了	da jiao le	1625
 大角驴羚	da jiao lv ling	1
 大角膜	da jiao mo	1
@@ -158971,6 +158973,7 @@ sort: by_weight
 核爆	he bao	3325
 核报	he bao	2330
 核保	he bao	1642
+和包	he bao	100
 # 河包	he bao	0
 荷包成型	he bao cheng xing	1
 荷包蛋	he bao dan	5330
